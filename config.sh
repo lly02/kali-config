@@ -1776,5 +1776,6 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
 perl -0777 -pi -e 's/^plugins=\(.*?\)/plugins=(\n    zsh-autosuggestions\n    zsh-syntax-highlighting\n)/ms' ~/.zshrc
 echo '[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh' >> ~/.zshrc
+echo 'bindkey -v' >> ~/.zshrc
 
 echo "Configuration done. Restart shell."
