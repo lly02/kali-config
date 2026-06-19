@@ -1775,8 +1775,17 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 perl -0777 -pi -e 's/^plugins=\(.*?\)/plugins=(\n    zsh-autosuggestions\n    zsh-syntax-highlighting\n)/ms' ~/.zshrc
-echo '[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh' >> ~/.zshrc
-echo 'bindkey -v' >> ~/.zshrc
-echo 'bindkey '^R' history-incremental-search-backward' >> ~/.zshrc
+
+cat << 'EOF' >> ~/.zshrc
+
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+bindkey -v
+bindkey '^R' history-incremental-search-backward
+
+if [ -n "$TMUX_PANE" ]; then
+    HISTFILE="$HOME/.zsh_history_$TMUX_PANE"
+fi
+EOF
 
 echo "Configuration done. Restart shell."
