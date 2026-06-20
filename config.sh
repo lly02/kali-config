@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ip widget
-cat << 'EOF' > ip_widget.sh
+cat << 'EOF' > ~/ip_widget.sh
 #!/bin/bash
 INTERFACE="eth0" # Change to your desired interface (e.g., wlan0, tun0)
 ADDR=$(ip -o addr show | awk '/inet / {print $2 ": " $4}' | cut -d/ -f1 | grep -v '127.0.0.1' | paste -s -d'|')
@@ -13,6 +13,10 @@ EOF
 # vim
 git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
+
+cat << 'EOF' > ~/.vim_runtime/my_configs.vim
+set number
+EOF
 
 # tmux
 cat << 'EOF' > ~/.tmux.conf
@@ -1776,16 +1780,12 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
 perl -0777 -pi -e 's/^plugins=\(.*?\)/plugins=(\n    zsh-autosuggestions\n    zsh-syntax-highlighting\n)/ms' ~/.zshrc
 
-cat << 'EOF' > ~/.zshrc
+cat << 'EOF' >> ~/.zshrc
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 bindkey -v
 bindkey '^R' history-incremental-search-backward
-
-if [ -n "$TMUX_PANE" ]; then
-    HISTFILE="$HOME/.zsh_history_$TMUX_PANE"
-fi
 EOF
 
 echo "Configuration done. Restart shell."
