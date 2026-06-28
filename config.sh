@@ -10,6 +10,8 @@ if [ -n "$ADDR" ]; then
 fi
 EOF
 
+sudo apt install tmux vim curl -y
+
 # vim
 git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
 sh ~/.vim_runtime/install_awesome_vimrc.sh
@@ -17,8 +19,6 @@ sh ~/.vim_runtime/install_awesome_vimrc.sh
 cat << 'EOF' > ~/.vim_runtime/my_configs.vim
 set number
 EOF
-
-sudo apt install tmux vim -y
 
 # tmux
 cat << 'EOF' > ~/.tmux.conf
