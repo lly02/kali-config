@@ -1787,6 +1787,22 @@ perl -0777 -pi -e 's/^plugins=\(.*?\)/plugins=(\n    zsh-autosuggestions\n    zs
 
 cat << 'EOF' >> ~/.zshrc
 
+setopt autocd
+setopt notify
+
+PROMPT_EOL_MARK=""
+
+HISTFILE=~/.zsh_history
+HISTSIZE=1000
+SAVEHIST=2000
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt hist_verify
+unsetopt share_history
+
+alias la='ls -la'
+
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 bindkey -v
